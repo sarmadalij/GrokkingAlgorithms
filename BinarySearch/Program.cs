@@ -7,11 +7,16 @@ namespace BinarySearch
         {
            
             var evenNumbers = new List<int> { 2, 4, 6, 8, 10};
-            Console.WriteLine("Position: "+BinarySearch(evenNumbers, 2)); 
+            Console.WriteLine("Position: "+ BinarySearch(evenNumbers, 2));
         }
 
         private static int? BinarySearch(IList<int> myList, int item)
         {
+
+            //print both item array and item to search 
+            Console.WriteLine("this is the array: " + string.Join(",", myList));
+            Console.WriteLine("this is the item to search: " + item);
+
             var low = 0;
             var high = myList.Count() - 1;
 
@@ -22,6 +27,7 @@ namespace BinarySearch
             {
                 ++count;
                 Console.WriteLine("This is "+(count)+" attempt");
+
                 var mid = (low + high) / 2;
                 Console.WriteLine("this is mid: " + mid);
 
@@ -30,16 +36,17 @@ namespace BinarySearch
 
                 if (guess == item) return mid; 
                
-                if (guess > item)
+                if (guess > item) //too high
                 {
+                    Console.WriteLine("Guess was too high for attempt " + count);
                     high = mid - 1;
                 }
-                else 
+                else  //to low
                 {
+                    Console.WriteLine("Guess was too low for attempt " + count);
                     low = mid + 1;
                 }
 
-                //count++;
             }
             return null;
         }
